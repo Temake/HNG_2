@@ -6,7 +6,7 @@ This project is a Flask API that classifies numbers based on various properties 
 ## Installation Instructions
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Temake/HNG_2
    ```
 2. Navigate to the project directory:
    ```bash

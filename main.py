@@ -6,7 +6,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 def is_armstrong(n):
-    digits = [int(d) for d in str(n) if d.isdigit()]  
+    digits = [int(d) for d in str(n) if d.isdigit()]
     return sum(pow(d, len(digits)) for d in digits) == n
 def is_prime(n):
     if n < 2:
@@ -26,7 +26,7 @@ def classify_number():
     try:
         number = int(number_str)  
     except (ValueError, TypeError):
-        return jsonify({"number": number_str, "error": "Invalid number format"}), 400
+        return jsonify({"number": number_str, "error": True }), 400
 
     number = int(number_str)
     properties = []
