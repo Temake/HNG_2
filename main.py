@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
 import requests
+from flask_cors import CORS
 from collections import OrderedDict
 
 app = Flask(__name__)
+CORS(app)
 
 def is_prime(n):
     if  n < 2:
