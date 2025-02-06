@@ -5,6 +5,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 def is_armstrong(n):
+    n=abs(n)
     digits = [int(d) for d in str(n) if d.isdigit()]
     return sum(pow(d, len(digits)) for d in digits) == n
 def is_prime(n):
