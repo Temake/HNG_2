@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify
 import requests
-from collections import OrderedDict
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -40,31 +39,20 @@ def classify_number():
 
     digit_sum = sum(int(d) for d in str(number) if d.isdigit())
 
-
-    try:
-       response = requests.get(f"http://numbersapi.com/{number}")
-       fun_fact = response.text if response.status_code == 200 else "No fun fact available."
-    except requests.RequestException:
-        fun_fact = "Error fetching fun fact."
-    
-    digit_sum = sum(int(d) for d in str(number) if d.isdigit())  
-
     try:
         response = requests.get(f"http://numbersapi.com/{number}", timeout=3)
         fun_fact = response.text if response.status_code == 200 else "No fun fact available."
     except requests.RequestException:
         fun_fact = "No fun fact available."
 
-    response_data = OrderedDict([
-        ("number", number),
-        ("is_prime", is_prime(number)),
-        ("is_perfect", is_perfect(number)),
-        ("properties", properties),
-        ("digit_sum", digit_sum),
-        ("fun_fact", fun_fact)
-    ])
-
-    return jsonify(response_data)
+    return jsonify({
+        "number": number,
+        "is_prime": is_prime(number),
+        "is_perfect": is_perfect(number),
+        "properties": properties,
+        "digit_sum": digit_sum,
+        "fun_fact": fun_fact
+    })
 
 if __name__ == '__main__':
     app.run(debug=False, host="0.0.0.0", port=5000)
