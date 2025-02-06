@@ -27,7 +27,7 @@ def classify_number():
     else:
         properties = ["even"] if is_even else ["odd"]
 
-    digit_sum = sum(int(d) for d in str(number) if d.isdigit())  # Keep negative sign in digit sum calculation
+    digit_sum = sum(int(d) for d in str(number) if d.isdigit())  
 
     try:
         response = requests.get(f"http://numbersapi.com/{number}", timeout=3)
